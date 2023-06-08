@@ -8,13 +8,15 @@ def typing(box, text):
 
 
 def cleaning():
-    typing("Text Box 13", "")
-    typing("Text Box 2", "")
-    typing("Text Box 1", "")
-    typing("Text Box 7", "")
-    typing("Text Box 8", "")
-    typing("Text Box 11", "")
-
+    typing("Text Box 1", "")#利润中心编码box1
+    typing("Text Box 2", "")#利润中心编码box2
+    typing("Text Box 7", "")#利润中心编码box3
+    typing("Text Box 8", "")#利润中心编码box4
+    typing("Text Box 11", "")#所在凭证册数
+    typing("Text Box 12", "")  # 所有凭证册数
+    typing("Text Box 13", "")#利润中心编码
+    typing("Text Box 14", "")#月份
+    typing("Text Box 15", "")#年份
 
 def testsaving():
     if ws.cell(2 + i, 7).value != ws.cell(3 + i, 7).value:
@@ -35,10 +37,13 @@ cleaning()
 centernum = 1  # 表示这本凭证里是第几个利润中心
 for i in range(ws.max_row):
     try:
-        typing("Text Box 11", ws.cell(2 + i, 7).value)
-        typing("Text Box 1", ws.cell(2 + i, 1).value[1:5])
+        typing("Text Box 1", ws.cell(2 + i, 1).value[1:5])#公司代码
+        typing("Text Box 11", ws.cell(2 + i, 7).value)  # 所在凭证册数
+        typing("Text Box 12", ws.cell(2 + i, 3).value)  # 所有凭证册数
+        typing("Text Box 14", ws.cell(2 + i, 9).value)#月份
+        typing("Text Box 15", ws.cell(2 + i, 8).value)  # 年份
         if centernum == 1:
-            typing("Text Box 13", ws.cell(2 + i, 1).value)
+            typing("Text Box 13", ws.cell(2 + i, 1).value)#利润中心编码
             centernum += 1
             print(ws.cell(2 + i, 1).value, centernum, ws.cell(2 + i, 7).value)
             testsaving()
@@ -67,27 +72,3 @@ for i in range(ws.max_row):
 doc.Close()
 app.Quit()
 
-'''
-    ActiveDocument.Shapes.Range(Array("Text Box 15")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="2021"
-    ActiveDocument.Shapes.Range(Array("Text Box 14")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="08"
-    ActiveDocument.Shapes.Range(Array("Text Box 13")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="L80030003"
-    ActiveDocument.Shapes.Range(Array("Text Box 2")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="L80020002"
-    ActiveDocument.Shapes.Range(Array("Text Box 7")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="L80010001"
-    ActiveDocument.Shapes.Range(Array("Text Box 8")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="L8801880"
-    ActiveDocument.Shapes.Range(Array("Text Box 11")).Select
-    Selection.WholeStory
-    Selection.TypeText Text:="12"
-    ActiveDocument.Save
-'''
