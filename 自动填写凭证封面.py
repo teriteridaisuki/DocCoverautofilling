@@ -1,6 +1,8 @@
 from win32com.client import Dispatch
 import openpyxl
-
+import os
+import sys
+exepath = os.path.dirname(os.path.realpath(sys.argv[0]))
 def typing(box,text):
     doc.Shapes.Range(box).Select()
     s.Text=text
@@ -27,12 +29,12 @@ def cleaning():
     typing("Text Box 24", "")  # 利润中心组
 def testsaving():
     if ws.cell(2 + i, 7).value != ws.cell(3 + i, 7).value:
-        doc.SaveAs('E:\\untitle\\输出\\凭证封面第' + str(ws.cell(2 + i, 7).value) + '本.docx')
+        doc.SaveAs(exepath + "\\输出\\"+'凭证封面第' + str(ws.cell(2 + i, 7).value) + '本.docx')
         global centernum
         centernum = 1
         cleaning()
 ws = openpyxl.load_workbook('凭证编号.xlsx')["Sheet1"]
-path=r'E:\untitle\备用程序\凭证侧边与封面\凭证封面打印版.docx'
+path=exepath+"\\凭证封面打印版.docx"
 app = Dispatch('Word.Application')
 # 新建word文档
 doc = app.Documents.Open(FileName=path)
